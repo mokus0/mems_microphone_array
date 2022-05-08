@@ -5,7 +5,7 @@ PROJECT_NAME = alchitry_platform
 
 VIVADO = vivado
 
-_default = alchitry_platform.xsa
+_default: alchitry_platform.xsa
 
 .PHONY: clean
 clean:
