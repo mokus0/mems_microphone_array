@@ -12,16 +12,16 @@ set project [get_projects ${PROJECT_NAME}]
 # TODO add IP repos, if needed
 
 # Import project sources
-proc import_to_fileset {fileset files} {
+proc add_to_fileset {fileset files} {
     if {[llength $files] == 0 } {
         puts "INFO: no files for fileset ${fileset}"
     } else {
-        import_files -fileset $fileset -norecurse $files
+        add_files -fileset $fileset -norecurse $files
     }
 }
 
-import_to_fileset sources_1 [glob -nocomplain -directory ${RTL_DIR} -type f *.v]
-import_to_fileset constrs_1 [glob -nocomplain -directory ${XDC_DIR} -type f *.xdc]
+add_to_fileset sources_1 [glob -nocomplain -directory ${RTL_DIR} -type f *.v]
+add_to_fileset constrs_1 [glob -nocomplain -directory ${XDC_DIR} -type f *.xdc]
 update_compile_order -fileset sources_1
 
 # Generate block design and top-level wrapper
