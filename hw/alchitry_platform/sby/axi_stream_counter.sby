@@ -1,0 +1,13 @@
+[options]
+mode prove
+depth 10
+
+[engines]
+smtbmc
+
+[script]
+read -sv -DFORMAL axi_stream_counter.sv
+prep -top axi_stream_counter
+
+[files]
+rtl/axi_stream_counter.sv

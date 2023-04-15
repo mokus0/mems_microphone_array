@@ -21,6 +21,7 @@ proc add_to_fileset {fileset files} {
 }
 
 add_to_fileset sources_1 [glob -nocomplain -directory ${RTL_DIR} -type f *.v]
+add_to_fileset sources_1 [glob -nocomplain -directory ${RTL_DIR} -type f *.sv]
 add_to_fileset constrs_1 [glob -nocomplain -directory ${XDC_DIR} -type f *.xdc]
 update_compile_order -fileset sources_1
 

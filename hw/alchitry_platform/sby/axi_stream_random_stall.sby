@@ -1,0 +1,15 @@
+[options]
+mode prove
+depth 10
+
+[engines]
+smtbmc
+
+[script]
+read -sv skidbuf.sv
+read -sv -DFORMAL axi_stream_random_stall.sv
+prep -top axi_stream_random_stall
+
+[files]
+rtl/axi_stream_random_stall.sv
+rtl/skidbuf.sv

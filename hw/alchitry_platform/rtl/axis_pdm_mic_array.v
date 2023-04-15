@@ -23,8 +23,8 @@ for (i = 0; i < NUM_MIC_PAIRS; i = i + 1) begin
     .INIT_Q2(1'b0),
     .SRTYPE("ASYNC")
   ) IDDR_inst (
-    .Q1(m_axis_tdata[2*i+1]), // Select = VDD mic
-    .Q2(m_axis_tdata[2*i+0]), // Select = GND mic
+    .Q1(m_axis_tdata[2*i+1]), // Select = GND mic
+    .Q2(m_axis_tdata[2*i+0]), // Select = VDD mic
     .C(pdm_clk),
     .CE(1'b1),
     .D(pdm_data[i]),
@@ -36,8 +36,10 @@ for (i = NUM_MIC_PAIRS*2; i < AXI_STREAM_BYTES*8; i = i + 1) begin
   assign m_axis_tdata[i] = 0'b0; 
 end
 
-
-// TODO: implement resets and don't set tvalid until after valid data actually starts coming out.
-assign m_axis_tvalid = 1'b1;
+reg valid_reg = 0;
+always @(posedge pdm_clk or posedge io_reset) begin
+  if (io_reset) valid_reg <= 1'b0;
+  else          valid_reg <= 1'b1;
+end
 
 endmodule;

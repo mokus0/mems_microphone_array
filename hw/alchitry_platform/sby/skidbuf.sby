@@ -1,0 +1,15 @@
+[options]
+mode prove
+depth 2
+
+[engines]
+smtbmc
+
+[script]
+read -sv skidbuf.sv
+read -sv skidbuf_formal.sv
+prep -top skidbuf_formal
+
+[files]
+sby/skidbuf_formal.sv
+rtl/skidbuf.sv
